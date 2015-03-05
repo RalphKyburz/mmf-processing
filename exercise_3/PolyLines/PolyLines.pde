@@ -3,9 +3,16 @@
  * MMF exercise 3
  *
  * some code to draw some polylines with the mouse
+ *
+ * HOW TO USE:
+ * Polyline starts with pressing the left mouse button and ends with release of the mousebutton.
+ * The next polyline starts at the end of the last drawn line.
+ * by pressing r,b,g the color of the next polyline to be drawn can be selected. / R(ed), B(lue), G(reen)
+ * by pressing  R,B,G all the polylines will be set to the selected color. / R(ed), B(lue), G(reen)
+ * by pressing DELETE the drawing will be deleted. You can start from scratch.
+ *
  * @author Ralph Kyburz 
  */
-
 
 // Variable definition
 int xStartpoint;
@@ -22,7 +29,6 @@ void setup() {
   lines = new ArrayList();
   reset();
 }
-
 
 void draw() {
   if (draw == true) {
