@@ -1,5 +1,6 @@
 /**
  * World Animation.
+ * MMF exercise 4
  * 
  * some simple piece of code to animate an earth ball
  * @author Ralph Kyburz 
