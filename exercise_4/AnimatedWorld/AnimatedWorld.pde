@@ -1,5 +1,7 @@
 /**
- * Load and Display 
+ * World Animation.
+ * 
+ * some simple piece of code to animate an earth ball
  * @author Ralph Kyburz 
  */
 
