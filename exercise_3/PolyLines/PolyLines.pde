@@ -22,31 +22,40 @@ int yEndpoint;
 boolean draw;
 color currentColor;
 ArrayList<Line> lines;
+PGraphics pg;
 
 
 void setup() {
   size(700, 700);
+  pg = createGraphics(700, 700);
   lines = new ArrayList();
   reset();
 }
 
 void draw() {
+  image(pg, 0, 0);
   if (draw == true) {
+    pg.beginDraw();
     Line myLine = new Line(xStartpoint, yStartpoint, xEndpoint, yEndpoint, currentColor);
     lines.add(myLine);
 
     for (int i = 0; i < lines.size (); i++) {
       Line line = lines.get(i);
       line.display();
+      pg.endDraw();
+      image(pg, 0, 0);
+      draw = false;
+      
     }
   }
 }
 
 void reset() {
   draw = false;
-  background(255);
+  pg.beginDraw();
+  pg.background(255);
+  pg.endDraw();
   currentColor = color(0, 0, 0);
-  strokeCap(SQUARE);
 
   // remove elements from array
   for (int i = lines.size () - 1; i >= 0; i--) {
@@ -61,7 +70,6 @@ void reset() {
 }
 
 void mousePressed() {
-  draw = false;  
   if (xStartpoint == 0 && yStartpoint == 0) {
     xStartpoint = mouseX;
     yStartpoint = mouseY;
@@ -104,11 +112,17 @@ void keyPressed() {
 }
 
 void changeAllColors(color mycolor) {
+  print("Total of lines in stack");
+  print(lines.size());
+  pg.clear();
+  pg.beginDraw();
   for (int i = 0; i < lines.size (); i++) {
     Line line = lines.get(i);
     line.setColor(mycolor);
     line.display();
   }
+  pg.endDraw();
+  image(pg, 0, 0);
 }  
 
 
@@ -131,8 +145,8 @@ class Line {
   }
 
   void display() {
-    stroke(linecolor);
-    line(startX, startY, endX, endY);
+    pg.stroke(linecolor);
+    pg.line(startX, startY, endX, endY);
   }
 
   void setColor(color mycolor) {
